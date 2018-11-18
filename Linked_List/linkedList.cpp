@@ -1,11 +1,12 @@
-#include <iostream>
+//
+//  linkedList.cpp
+//  Linked_List
+//
+//  Created by TT Nguyen on 11/18/18.
+//  Copyright © 2018 TT Nguyen. All rights reserved.
+//
 
-using namespace std;
-
-struct NODE {
-    int key;
-    NODE* next;
-};
+#include "linkedList.hpp"
 
 NODE* CreateNode(int data) {
     NODE * p = new NODE;
@@ -64,8 +65,10 @@ bool RemoveTail(NODE* head) {
     if (head == NULL)
         return false;
     if (head -> next == NULL) {
-        delete head;
-        head == NULL;
+        NODE* temp;
+        temp = head;
+        head = temp->next;
+        free(temp);
         return true;
     }
     
@@ -95,9 +98,8 @@ void RemoveAll(NODE* &head) {
 void PrintList(NODE* head) {
     if (head == NULL)
         cout << "Linked List is empty!" << endl;
-    for (NODE * cur = head; cur != NULL; cur = cur -> next) {
+    for (NODE * cur = head; cur != NULL; cur = cur -> next)
         cout << cur->key << " ";
-    }
 }
 
 int SumList (NODE* head) {
@@ -131,10 +133,5 @@ int MaxList (NODE* head) {
     return max;
 }
 
-int main() {
-    
-    NODE * p = CreateNode(10);
-    RemoveHead(p);
-    PrintList(p);
-    
-}
+
+
